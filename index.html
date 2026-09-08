@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sign up for the class and see who else is on the list." />
+  <title>Class Signup</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="card">
+    <header class="card__header">
+      <h1>Class Signup</h1>
+      <p class="card__subtitle">Add your name to the list. Everyone can see who has signed up.</p>
+    </header>
+
+    <form id="signup-form" class="form" novalidate>
+      <label class="form__label" for="name">Your name</label>
+      <div class="form__row">
+        <input
+          id="name"
+          name="name"
+          type="text"
+          class="form__input"
+          placeholder="e.g. Ada Lovelace"
+          autocomplete="name"
+          required
+          maxlength="80"
+        />
+        <button id="submit-btn" type="submit" class="btn">Sign up</button>
+      </div>
+      <p id="field-error" class="form__hint" role="alert" hidden></p>
+    </form>
+
+    <div id="status" class="status" role="status" aria-live="polite" hidden></div>
+
+    <section class="list" aria-labelledby="list-heading">
+      <div class="list__top">
+        <h2 id="list-heading">Signed up <span id="count" class="list__count" hidden></span></h2>
+        <button id="refresh-btn" type="button" class="btn btn--ghost">Refresh</button>
+      </div>
+
+      <p id="list-loading" class="list__msg" hidden>Loading the list…</p>
+      <p id="list-empty" class="list__msg" hidden>No one has signed up yet. Be the first!</p>
+      <p id="list-error" class="list__msg list__msg--error" hidden>
+        <span id="list-error-text">Something went wrong loading the list.</span>
+        <button id="retry-btn" type="button" class="btn btn--ghost">Try again</button>
+      </p>
+
+      <ul id="signups" class="signups"></ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

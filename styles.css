@@ -1,0 +1,218 @@
+:root {
+  --bg: #f4f5f7;
+  --card-bg: #ffffff;
+  --text: #1c1e21;
+  --muted: #63676c;
+  --border: #d9dce1;
+  --accent: #2f6bff;
+  --accent-hover: #234fd1;
+  --success-bg: #e7f6ec;
+  --success-text: #1c6b3c;
+  --error-bg: #fdecec;
+  --error-text: #b3261e;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16181c;
+    --card-bg: #1f2226;
+    --text: #e8eaed;
+    --muted: #a1a6ad;
+    --border: #343941;
+    --accent: #5c8bff;
+    --accent-hover: #7aa1ff;
+    --success-bg: #16321f;
+    --success-text: #7ee2a4;
+    --error-bg: #3a1c1a;
+    --error-text: #ff9c94;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: clamp(16px, 5vw, 56px) 16px;
+  min-height: 100vh;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(20px, 5vw, 36px);
+  width: 100%;
+  max-width: 560px;
+}
+
+.card__header h1 {
+  margin: 0 0 6px;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+}
+
+.card__subtitle {
+  margin: 0 0 24px;
+  color: var(--muted);
+}
+
+/* Form */
+.form { margin-bottom: 28px; }
+
+.form__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form__row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.form__input {
+  flex: 1 1 220px;
+  min-width: 0;
+  padding: 12px 14px;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.form__input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.form__hint {
+  margin: 10px 0 0;
+  color: var(--error-text);
+  font-size: 0.9rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn:hover:not(:disabled) { background: var(--accent-hover); }
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.btn--ghost {
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  font-size: 0.9rem;
+}
+
+.btn--ghost:hover:not(:disabled) { background: transparent; border-color: var(--accent); }
+
+/* Status banner */
+.status {
+  margin-bottom: 24px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+.status--success { background: var(--success-bg); color: var(--success-text); }
+.status--error { background: var(--error-bg); color: var(--error-text); }
+
+/* List */
+.list__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.list__top h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.list__count {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.list__msg {
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.list__msg--error { color: var(--error-text); }
+
+.signups {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.signups li {
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  word-break: break-word;
+}
+
+.signups li.is-new {
+  animation: pop 0.4s ease;
+  border-color: var(--accent);
+}
+
+@keyframes pop {
+  from { transform: translateY(-4px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 420px) {
+  .form__row { flex-direction: column; align-items: stretch; }
+  .form__input { flex: 0 0 auto; }
+  .list__top { flex-direction: column; align-items: flex-start; }
+  .btn { width: 100%; }
+  .btn--ghost { width: auto; }
+}
